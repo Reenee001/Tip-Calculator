@@ -1,0 +1,49 @@
+import java.util.Scanner;//imports scanner util
+public class Main {
+   public static void main(String[] args) {
+      
+       Scanner bill = new Scanner(System.in); //creates new scanner for user to input bill amount and converts it a an int holding whole number of cents
+       System.out.print("Enter total bill amount: $");
+       String billUnconverted = bill.nextLine();
+       double x = Double.parseDouble(billUnconverted);
+       int billConverted = (int) (x*100);
+      
+       Scanner percentage = new Scanner(System.in); //scanner for user to input tip percentage
+       System.out.print("Enter tip percentage in percent: ");
+       String tip = percentage.nextLine();
+       int tipConverted = Integer.parseInt(tip);
+      
+       Scanner people = new Scanner(System.in); //scanner for user to input number of people
+       System.out.print("Enter number of people: ");
+       String y = people.nextLine();
+       int numPeople = Integer.parseInt(y);
+
+
+       System.out.println("-------------------------------");
+
+
+       double tipAmount = ((double) (billConverted * tipConverted)) / 10000; //calculates tip amount per person
+       double tipPerPerson = (tipAmount / numPeople);
+       tipPerPerson = (double) ((int)((tipAmount / numPeople) * 100));
+       if((tipPerPerson % 10) >= 5) { //rounds the tip amount
+           tipPerPerson++;
+       }
+       tipPerPerson = tipPerPerson / 100; //converts back to xx.xx
+       double totalTip = (double)((int)(tipPerPerson * numPeople * 100)) / 100;
+       System.out.println("The total tip is $" + totalTip);
+       System.out.println("-------------------------------");
+       System.out.println("The total tip per person is $" + tipPerPerson );
+       System.out.println("-------------------------------");
+       double totalBillPerPerson = (((double) billConverted) / numPeople / 100) + (tipAmount / numPeople); //calculates total bill per person
+       totalBillPerPerson = (double) ((int) (totalBillPerPerson * 100));
+       if((totalBillPerPerson % 10) >= 5) { //rounds the bill
+           totalBillPerPerson++;
+       }
+       totalBillPerPerson = totalBillPerPerson / 100; //converts back to xx.xx
+       double totalBill = (double)((int)(totalBillPerPerson * numPeople * 100)) / 100;
+       System.out.println("The total bill is $" + totalBill);
+       System.out.println("-------------------------------");
+       System.out.println("The total per person is $" + totalBillPerPerson );
+       System.out.println("-------------------------------");
+   }
+}
